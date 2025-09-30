@@ -1,105 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .password-output {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e8f0fe;
-            border-radius: 4px;
-            word-break: break-all;
-        }
-
-        .error {
-            color: red;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Stone Paper Scissors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <h1>Password Generator</h1>
-    <div class="form-container">
-        <form method="POST">
-            <div class="form-group">
-                <label for="length">Password Length (minimum 8):</label>
-                <input type="number" id="length" name="length" value="{{ length }}" min="8">
-            </div>
-            <div class="form-group">
-                <label><input type="checkbox" name="uppercase" {% if use_uppercase %}checked{% endif %}> Include
-                    Uppercase Letters</label>
-                <label><input type="checkbox" name="lowercase" {% if use_lowercase %}checked{% endif %}> Include
-                    Lowercase Letters</label>
-                <label><input type="checkbox" name="digits" {% if use_digits %}checked{% endif %}> Include
-                    Digits</label>
-                <label><input type="checkbox" name="special" {% if use_special %}checked{% endif %}> Include Special
-                    Characters</label>
-            </div>
-            <button type="submit">Generate Password</button>
-        </form>
-        {% if password %}
-        <div class="password-output">
-            <strong>Generated Password:</strong> {{ password }}
+    <div class="container">
+        <h1>Stone ✊ Paper ✋ Scissors ✌️</h1>
+        <div class="buttons">
+            <button onclick="play('stone')">✊ Stone</button>
+            <button onclick="play('paper')">✋ Paper</button>
+            <button onclick="play('scissors')">✌️ Scissors</button>
         </div>
-        {% endif %}
-        {% if error %}
-        <div class="error">{{ error }}</div>
-        {% endif %}
+        <div id="resultBox">
+            <p><b>You:</b> <span id="user"></span></p>
+            <p><b>Computer:</b> <span id="computer"></span></p>
+            <h2 id="result"></h2>
+        </div>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
